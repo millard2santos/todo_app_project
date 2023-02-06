@@ -1,19 +1,20 @@
-import Form from './pages/Form.jsx'
+import Form from './pages/Main.jsx'
 import ToDo from './components/ToDo/ToDo.jsx'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ToDoList from "./pages/ToDoList"
+import ToDoList from "./components/ToDoList/ToDoList"
 import { useState } from 'react';
+import Main from './pages/Main.jsx';
 
 
 function App() {
 
-  const [data, setData ] = useState([]) 
+  
   
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Form setData={setData} data={data}/>} />
-        <Route path="/list" element={<ToDoList data={data}/>} />
+        <Route path="/" element={<Main />} />
+        {/* <Route path="/list" element={<ToDoList data={data}/>} /> */}
       </Routes>
     </BrowserRouter>
 

@@ -1,4 +1,4 @@
-const d = new Date()
-
-
-console.log(d);
+const d = new Date().toString()
+const e = new Date().toString()
+const array = [d,e]
+console.log(array);
