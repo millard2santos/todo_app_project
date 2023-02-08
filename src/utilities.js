@@ -20,20 +20,24 @@ const getTime = () => {
 
 const orderByTime = (string, holdData) => {
     string === 'Asc' ? holdData = holdData.sort((a, b) => {
+
         const aTime = Number(a.time.replace(/:/g, ''))
         const bTime = Number(b.time.replace(/:/g, ''))
+
         return aTime - bTime
     }) :
         holdData = holdData.sort((a, b) => {
+
             const aTime = Number(a.time.replace(/:/g, ''))
             const bTime = Number(b.time.replace(/:/g, ''))
+            
             return bTime - aTime
         })
 
     return holdData
 }
 
-const tags = ['Job','Hobby','Homework','Class','Life','Family','Others']
+const tags = [{tag: 'Job', selected: false},{tag: 'Hobby', selected: false},{tag: 'Homework', selected: false},{tag: 'Class', selected: false},{tag: 'Life', selected: false},{tag: 'Family', selected: false},{tag: 'Others', selected: false}]
 
 
 

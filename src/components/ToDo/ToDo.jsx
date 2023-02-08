@@ -1,26 +1,28 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import './ToDo.css'
-import {getTime} from '../../utilities'
+import { getTime } from '../../utilities'
 
 
-const ToDo = ({ dataSingle }) => {
-
-
-    const [checked, setChecked] = useState(false)
+const ToDo = ({ dataSingle, data, setData }) => {
+    const holdData = [...data]
+    
     const [finish, setFinish] = useState('')
     // const [checked, setChecked] = useState('')
 
     const handleDelete = (e) => {
-        e.target.parentNode.parentNode.remove()
+        holdData.splice(holdData.findIndex(e => e.id === dataSingle.id), 1)
+        setData(holdData)
+        
     }
-    
-    const handleClick = e => {
 
-        checked ? setChecked(false) : setChecked(true)
+    const handleClick = e => {
+        
+        dataSingle.isChecked ? dataSingle.isChecked = false : dataSingle.isChecked = true
+        
         finish ? setFinish('') : setFinish(getTime())
     }
 
-    
+
 
 
     return (
@@ -28,7 +30,7 @@ const ToDo = ({ dataSingle }) => {
             <div className={`
             overflow-hidden
             rounded-lg
-            relative w-[20%] z-20
+            relative w-[25%] z-20
           bg-white
             shadow-lg
             p-5
@@ -37,12 +39,14 @@ const ToDo = ({ dataSingle }) => {
             hover:scale-105
             transition-transform 
             duration-100`}>
-                <h2 className={`${checked ? 'line-through' : ''} text-xl text-gray-800`}>{`Lista ${dataSingle.todo}`}</h2>
-                <p className={`${checked ? 'line-through' : ''} text-gray-800`}>{dataSingle.todo}</p>
-                <p className={`${checked ? 'line-through' : ''} text-gray-800`}>{dataSingle.priority}</p>
-                <p className={`${checked ? 'line-through' : ''} text-gray-800`}>{dataSingle.time}</p>
-                <p className={`${checked ? 'line-through' : ''} text-gray-800`}>{finish}</p>
-                <p className={`${checked ? 'line-through' : ''} text-gray-800`}>{dataSingle.tag}</p>
+                <h2 className={`${dataSingle.isChecked ? 'line-through' : ''} text-xl text-gray-800`}>{`Lista ${dataSingle.todo}`}</h2>
+                <p className={`${dataSingle.isChecked ? 'line-through' : ''} text-gray-800`}>{dataSingle.todo}</p>
+                <p className={`${dataSingle.isChecked ? 'line-through' : ''} text-gray-800`}>{dataSingle.priority}</p>
+                <p className={`${dataSingle.isChecked ? 'line-through' : ''} text-gray-800`}>{dataSingle.time}</p>
+                {
+                    dataSingle.isChecked ? <p className={`line-through text-gray-800`}>{getTime()}</p> : '' 
+                }
+                <p className={`${dataSingle.isChecked ? 'line-through' : ''} text-gray-800`}>{dataSingle.tag}</p>
                 <div className="flex gap-3">
                     <i onClick={handleClick} className="fa-solid fa-check text-green-300 hover:scale-125 cursor-pointer transition-transform duration-200"></i>
                     <i onClick={handleDelete} className="fa-solid fa-x text-red-600 hover:scale-125 cursor-pointer transition-transform duration-200"></i>
