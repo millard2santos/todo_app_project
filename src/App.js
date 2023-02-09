@@ -10,7 +10,7 @@ import Main from './pages/Main.jsx';
 function App() {
 
   
-  console.clear()
+  
   return (
     <BrowserRouter>
       <Routes>

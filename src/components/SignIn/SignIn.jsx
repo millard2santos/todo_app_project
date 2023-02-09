@@ -19,6 +19,7 @@ const SignIn = ({logged, setLogged}) => {
             })
             .catch((error) => {
                 console.log('Ya loggeado')
+                console.log(error)
                 // ..
             });
         setEmail('')

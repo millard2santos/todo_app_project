@@ -1,17 +1,21 @@
 import { useState } from 'react'
 import './ToDo.css'
 import { getTime } from '../../utilities'
+import { async } from '@firebase/util'
+import {setDoc,doc} from "firebase/firestore";
+import {db} from '../../utilities'
 
 
-const ToDo = ({ dataSingle, data, setData }) => {
-    const holdData = [...data]
+const ToDo = ({ dataSingle, dataF, setDataF,user }) => {
+   const holdData = [...dataF]
     
-    const [finish, setFinish] = useState('')
-    // const [checked, setChecked] = useState('')
+   
 
-    const handleDelete = (e) => {
+    const handleDelete = async(e) => {
         holdData.splice(holdData.findIndex(e => e.id === dataSingle.id), 1)
-        setData(holdData)
+        await setDoc(doc(db, 'toDoUsers', user.uid), {
+            'List': holdData})
+        setDataF(holdData)
         
     }
 
@@ -19,7 +23,7 @@ const ToDo = ({ dataSingle, data, setData }) => {
         
         dataSingle.isChecked ? dataSingle.isChecked = false : dataSingle.isChecked = true
         
-        finish ? setFinish('') : setFinish(getTime())
+        
     }
 
 

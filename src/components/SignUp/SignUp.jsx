@@ -1,7 +1,8 @@
 import {createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { doc, setDoc } from "firebase/firestore"; 
 
-import { auth } from '../../utilities'
+import { auth,db } from '../../utilities'
 
 const SignUp = ({logged,setLogged}) => {
 
@@ -11,15 +12,16 @@ const SignUp = ({logged,setLogged}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         createUserWithEmailAndPassword(auth, e.target.email.value, e.target.password.value)
-            .then((userCredential) => {
+            .then(async(userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                await setDoc(doc(db, 'toDoUsers', user.uid), {
+                    'List': []})
                 setLogged(true)
                 console.log('Registrado')
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                console.log(error)
                 // ..
             });
         setEmail('')

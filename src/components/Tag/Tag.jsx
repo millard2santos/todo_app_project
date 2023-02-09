@@ -2,8 +2,8 @@ import { useState } from "react"
 
 
 
-const Tag = ({ tag, data, setFilter, filter }) => {
-    const holdData = [...data]
+const Tag = ({ tag, dataF, setFilter }) => {
+    const holdData = [...dataF]
     
     const handleClick = () => {
         if(!tag.selected){

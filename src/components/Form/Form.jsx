@@ -1,25 +1,28 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { id , getTime} from '../../utilities'
+import { doc, setDoc, getDoc } from "firebase/firestore"; 
+import {db} from '../../utilities'
 
 
 
 
 
-const Form = ({ setData, data }) => {
+const Form = ({ setDataF, dataF, user }) => {
+    
 
     const [input, setInput] = useState('')
     const [priority, setPriority] = useState('High')
     const [tag, setTag ] = useState('Job')
 
-    const time = new Date()
+   
 
 
 
-    const handleSubmit = (e) => {
-        const holdData = [...data]
-
+    const handleSubmit = async(e) => {
         e.preventDefault()
+        const holdData = [...dataF]
+
         const created = {
             todo: (e.target.todo.value)[0].toUpperCase() + (e.target.todo.value).slice(1),
             priority: e.target.priority.value,
@@ -41,7 +44,10 @@ const Form = ({ setData, data }) => {
         if (!holdData.find(e => e.todo === created.todo)) {
             holdData.push(created)
         }
-        setData(holdData)
+        await setDoc(doc(db, 'toDoUsers', user.uid), {
+            'List': holdData})
+        setDataF(holdData)
+
 
 
     }
