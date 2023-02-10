@@ -19,9 +19,12 @@ const ToDo = ({ dataSingle, dataF, setDataF,user }) => {
         
     }
 
-    const handleClick = e => {
+    const handleClick = async(e) => {
         
         dataSingle.isChecked ? dataSingle.isChecked = false : dataSingle.isChecked = true
+        await setDoc(doc(db, 'toDoUsers', user.uid), {
+            'List': holdData})
+        setDataF(holdData)
         
         
     }

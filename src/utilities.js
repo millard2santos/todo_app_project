@@ -8,7 +8,7 @@ const firebaseConfig = {
     storageBucket: "moviesapp-57fbb.appspot.com",
     messagingSenderId: "375122766805",
     appId: "1:375122766805:web:5e28dbcf7b0fbcbc60eb5c"
-  };
+};
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -46,14 +46,64 @@ const orderByTime = (string, holdData) => {
 
             const aTime = Number(a.time.replace(/:/g, ''))
             const bTime = Number(b.time.replace(/:/g, ''))
-            
+
             return bTime - aTime
         })
 
     return holdData
 }
 
-const tags = [{tag: 'Job', selected: false},{tag: 'Hobby', selected: false},{tag: 'Homework', selected: false},{tag: 'Class', selected: false},{tag: 'Life', selected: false},{tag: 'Family', selected: false},{tag: 'Others', selected: false}]
+const tags = [
+    {
+        tag: 'Job',
+        selected: false,
+        first: '#2980B9',
+        last: '#6DD5FA',
+
+    },
+    {
+        tag: 'Hobby',
+        selected: false,
+        first: '#BDC3C7',
+        last: '#2C3E50',
+
+    },
+    {
+        tag: 'Homework',
+        selected: false,
+        first: '#ee9ca7',
+        last: '#ffdde1',
+
+    },
+    {
+        tag: 'Class',
+        selected: false,
+        first: '#2193b0',
+        last: '#6dd5ed',
+
+    },
+    {
+        tag: 'Life',
+        selected: false,
+        first: '#C6FFDD',
+        last: '#f7797d',
+
+    },
+    {
+        tag: 'Family',
+        selected: false,
+        first: '#0F2027',
+        last: '#f7797d',
+
+    },
+    {
+        tag: 'Others',
+        selected: false,
+        first: '#f953c6',
+        last: '#b91d73',
+
+    }
+]
 
 
 

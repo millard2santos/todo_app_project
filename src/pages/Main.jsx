@@ -1,15 +1,9 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
-import { db } from '../utilities'
+import { db,auth  } from '../utilities'
 import { useEffect, useState } from "react"
-import Return from "../components/Return/Return"
-import ToDo from "../components/ToDo/ToDo"
-import Form from "../components/Form/Form"
-import ToDoList from "../components/ToDoList/ToDoList"
-import { auth } from '../utilities'
-import SignUp from "../components/SignUp/SignUp";
-import SignIn from "../components/SignIn/SignIn";
-import SignOut from "../components/SignOut/SignOut";
+import HoldMenu from "../components/HoldMenu/HoldMenu";
+import HoldSign from "../components/HoldSign/HoldSign";
 
 
 
@@ -21,6 +15,7 @@ const Main = () => {
     const [logged, setLogged] = useState(false)
     const [dataF, setDataF] = useState([])
     const [user, setUser] = useState('')
+    
 
     useEffect(() => {
         
@@ -52,17 +47,21 @@ const Main = () => {
     
     return (
         <>
-            <SignUp logged={logged} setLogged={setLogged} />
-            <Form setDataF={setDataF} dataF={dataF} user={user}/>
-            <SignOut />
+            <div className="flex flex-col gap-10">
+            
 
 
-            {
-                logged ? <SignOut logged={logged} setLogged={setLogged} user={user} /> : <SignIn logged={logged} setLogged={setLogged} />
-            }
-            {
-                logged ? <ToDoList user={user} dataF={dataF} setDataF={setDataF}/> : null
-            }
+            
+
+             {
+                logged ? <HoldMenu setDataF={setDataF} dataF={dataF} user={user} setLogged={setLogged}/> : <HoldSign setLogged={setLogged}/>
+             }
+            </div>
+            
+            
+            
+
+
 
         </>
     )

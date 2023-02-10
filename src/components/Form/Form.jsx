@@ -55,16 +55,16 @@ const Form = ({ setDataF, dataF, user }) => {
 
     return (
         <>
-            <form action="" onSubmit={handleSubmit} className="bg-black w-full p-10 flex justify-center gap-5">
-                <h1 className="text-white">Tareas</h1>
+            <form action="" onSubmit={handleSubmit} className="bg-gradient-to-r from-[#108dc7] to-[#ef8e38] w-full p-10 flex justify-center gap-5">
+                <h1 className="">Tareas</h1>
                 <input onChange={(e) => setInput(e.target.value)} type="text" id="todo" name="todo" placeholder="Tarea" className="py-1 px-3" value={input} required min={3} />
-                <label className="text-white" htmlFor="priority">Priority</label>
+                <label className="" htmlFor="priority">Priority</label>
                 <select name="priority" value={priority} onChange={(event) => setPriority(event.target.value)}>
                     <option value="High">High</option>
                     <option value="Medium">Medium</option>
                     <option value="Low">Low</option>
                 </select>
-                <label className="text-white" htmlFor="tag">Add a Tag</label>
+                <label className="" htmlFor="tag">Add a Tag</label>
                 <select name="tag" id="tag" value={tag} onChange={(e) => setTag(e.target.value)}>
                     <option value="Job">Job</option>
                     <option value="Hobby">Hobby</option>

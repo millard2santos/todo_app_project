@@ -46,8 +46,8 @@ const ToDoList = ({user, dataF, setDataF}) => {
                     tags.map((e, i) => <Tag key={i} tag={e} dataF={dataF} setFilter={setFilter}/>)
                 }
             </div>
-            <div className="flex flex-wrap items-start gap-3 bg-gradient-to-r from-[#ffefba] to-white p-40 w-screen min-h-screen">
-                <div className="absolute z-10 bottom-0 right-0 w-[50%] h-[50%] opacity-30 rounded-full bg-slate-300"></div>
+            <div className="flex flex-wrap items-start gap-3 p-40 w-full min-h-screen">
+                <div className="absolute z-10 bottom-0 right-4 w-[50%] h-[50%] opacity-30 rounded-full bg-slate-300"></div>
 
                
 
